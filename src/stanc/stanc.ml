@@ -197,7 +197,10 @@ let use_file filename =
     if !dump_tx_mir_pretty then Program.Typed.pp Format.std_formatter tx_mir ;
     let opt_mir =
       if !optimize then (
-        let opt = Optimize.optimization_suite tx_mir in
+        let opt =
+          Optimize.optimization_suite
+            ~settings:Optimize.only_optimize_ad_levels tx_mir
+        in
         if !dump_opt_mir then
           Sexp.pp_hum Format.std_formatter
             [%sexp (opt : Middle.Program.Typed.t)] ;

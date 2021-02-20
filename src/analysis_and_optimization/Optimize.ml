@@ -1085,6 +1085,7 @@ let settings_const b =
 
 let all_optimizations : optimization_settings = settings_const true
 let no_optimizations : optimization_settings = settings_const false
+let only_optimize_ad_levels = {no_optimizations with optimize_ad_levels= true}
 
 let optimization_suite ?(settings = all_optimizations) mir =
   let maybe_optimizations =

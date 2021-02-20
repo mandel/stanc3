@@ -72,6 +72,7 @@ type optimization_settings =
 
 val all_optimizations : optimization_settings
 val no_optimizations : optimization_settings
+val only_optimize_ad_levels : optimization_settings
 
 val optimization_suite :
   ?settings:optimization_settings -> Program.Typed.t -> Program.Typed.t
