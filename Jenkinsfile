@@ -116,10 +116,12 @@ pipeline {
                         script {
                             if (params.compile_all) {
                                 sh """
+                                    cd performance-tests-cmdstan
                                     CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good || true
                                 """                            
                             } else {
                                 sh """
+                                    cd performance-tests-cmdstan
                                     CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models || true
                                     CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen || true
                                     CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr || true
