@@ -96,7 +96,7 @@ pipeline {
                     }
                     post { always { runShell("rm -rf ./*") }}
                 }
-                stage("Try to compile all good integration models") {
+                stage("Compile test models") {
                     agent { label 'linux' }
                     steps {
                         unstash 'ubuntu-exe'
