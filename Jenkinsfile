@@ -113,17 +113,19 @@ pipeline {
                             git clone --depth 1 https://github.com/stan-dev/stanc3
                             
                         """
-                        if (params.compile_all) {
-                            sh """
-                                CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good || true
-                            """                            
-                        } else {
-                            sh """
-                                CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models || true
-                                CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen || true
-                                CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr || true
-                                CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/indexing || true
-                            """
+                        script {
+                            if (params.compile_all) {
+                                sh """
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good || true
+                                """                            
+                            } else {
+                                sh """
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models || true
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen || true
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr || true
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/indexing || true
+                                """
+                            }
                         }
 
                         xunit([GoogleTest(
