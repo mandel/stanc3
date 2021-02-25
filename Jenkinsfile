@@ -101,7 +101,7 @@ pipeline {
                     steps {
                         unstash 'ubuntu-exe'
                         sh """
-                            git clone --recursive --depth 50 https://github.com/stan-dev/performance-tests-cmdstan
+                            git clone --recursive --depth 50 https://github.com/stan-dev/performance-tests-cmdstan --branch fix_compile_tests
                         """
 
                         writeFile(file:"performance-tests-cmdstan/cmdstan/make/local",
