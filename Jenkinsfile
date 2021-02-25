@@ -117,15 +117,15 @@ pipeline {
                             if (params.compile_all) {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good || true
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good
                                 """                            
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models || true
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen || true
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr || true
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/indexing || true
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/indexing
                                 """
                             }
                         }
