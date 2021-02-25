@@ -122,10 +122,8 @@ pipeline {
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/indexing
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models/knitr
+                                    ls stanc3/test/integration/example-models/knitr/bandits
                                 """
                             }
                         }
