@@ -121,7 +121,7 @@ pipeline {
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    ./runPerformanceTests.py --runs=0 ./example-models/misc/
+                                    ./runPerformanceTests.py --runs=0 ./example-models/knitr/
                                 """
                             }
                         }
