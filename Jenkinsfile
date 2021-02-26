@@ -106,7 +106,7 @@ pipeline {
                             """
 
                             writeFile(file:"performance-tests-cmdstan/cmdstan/make/local",
-                                    text:"O=0\nCXXFLAGS+= -S -Wno-unused-command-line-argument")
+                                    text:"O=0\nCXX=${CXX}")
                             sh """
                                 cd performance-tests-cmdstan
                                 cd cmdstan; make -j${env.PARALLEL} build; cd ..
@@ -116,13 +116,15 @@ pipeline {
                             if (params.compile_all) {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/good
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good
                                 """                            
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 ./example-models/misc/garch
+                                    ./runPerformanceTests.py --runs=0 ./example-models/misc/garch
                                     ls example-models/misc/garch
+                                    cd cmdstan
+                                    make ../example-models/misc/garch/arch1
                                 """
                             }
                         }
