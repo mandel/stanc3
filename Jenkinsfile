@@ -106,7 +106,7 @@ pipeline {
                             """
 
                             writeFile(file:"performance-tests-cmdstan/cmdstan/make/local",
-                                    text:"O=0\nCXXFLAGS+=-o/dev/null -S -Wno-unused-command-line-argument")
+                                    text:"O=0\nCXXFLAGS+= -S -Wno-unused-command-line-argument")
                             sh """
                                 cd performance-tests-cmdstan
                                 cd cmdstan; make -j${env.PARALLEL} build; cd ..
