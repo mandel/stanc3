@@ -121,7 +121,7 @@ pipeline {
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr
+                                    # ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/array-expr
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/model
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/vec-expr
