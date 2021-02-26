@@ -125,6 +125,11 @@ pipeline {
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/code-gen
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/model
                                     ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/vec-expr
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/ode
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/compund-assign
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/services
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/parser-generator
+                                    ./runPerformanceTests.py --runs=0 stanc3/test/integration/good/*.stan
                                 """
                             }
                         }
