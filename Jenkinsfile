@@ -123,6 +123,7 @@ pipeline {
                                 sh """
                                     cd performance-tests-cmdstan
                                     CXX="${CXX}" ./runPerformanceTests.py --runs=0 ./example-models/knitr
+                                    ls example-models/knitr/bandits
                                     ls example-models/knitr/pool-binary-trials
                                 """
                             }
