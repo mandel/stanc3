@@ -99,21 +99,20 @@ pipeline {
                 stage("Compile test models") {
                     agent { label 'linux' }
                     steps {
-                        unstash 'ubuntu-exe'
-                        sh """
-                            git clone --recursive --depth 50 https://github.com/stan-dev/performance-tests-cmdstan --branch fix_compile_tests
-                        """
-
-                        writeFile(file:"performance-tests-cmdstan/cmdstan/make/local",
-                                  text:"O=0\nCXXFLAGS+=-o/dev/null -S -Wno-unused-command-line-argument")
-                        sh """
-                            cd performance-tests-cmdstan
-                            cd cmdstan; make -j${env.PARALLEL} build; cd ..
-                            cp ../bin/stanc cmdstan/bin/stanc
-                            git clone --depth 1 https://github.com/stan-dev/stanc3
-                            
-                        """
                         script {
+                            unstash 'ubuntu-exe'
+                            sh """
+                                git clone --recursive --depth 50 https://github.com/stan-dev/performance-tests-cmdstan --branch fix_compile_tests
+                            """
+
+                            writeFile(file:"performance-tests-cmdstan/cmdstan/make/local",
+                                    text:"O=0\nCXXFLAGS+=-o/dev/null -S -Wno-unused-command-line-argument")
+                            sh """
+                                cd performance-tests-cmdstan
+                                cd cmdstan; make -j${env.PARALLEL} build; cd ..
+                                cp ../bin/stanc cmdstan/bin/stanc
+                                git clone --depth 1 https://github.com/stan-dev/stanc3
+                            """                        
                             if (params.compile_all) {
                                 sh """
                                     cd performance-tests-cmdstan
@@ -128,13 +127,13 @@ pipeline {
                             }
                         }
 
-                        xunit([GoogleTest(
-                            deleteOutputFiles: false,
-                            failIfNotNew: true,
-                            pattern: 'performance-tests-cmdstan/performance.xml',
-                            skipNoTestFiles: false,
-                            stopProcessingIfError: false)
-                        ])
+                        // xunit([GoogleTest(
+                        //     deleteOutputFiles: false,
+                        //     failIfNotNew: true,
+                        //     pattern: 'performance-tests-cmdstan/performance.xml',
+                        //     skipNoTestFiles: false,
+                        //     stopProcessingIfError: false)
+                        // ])
                     }
                     post { always { runShell("rm -rf ./*") }}
                 }
