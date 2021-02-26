@@ -122,8 +122,8 @@ pipeline {
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 stanc3/test/integration/example-models/knitr
-                                    ls stanc3/test/integration/example-models/knitr/bandits
+                                    CXX="${CXX}" ./runPerformanceTests.py --runs=0 ./example-models/knitr
+                                    ls example-models/knitr
                                 """
                             }
                         }
