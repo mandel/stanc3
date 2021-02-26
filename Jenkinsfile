@@ -121,21 +121,18 @@ pipeline {
                             } else {
                                 sh """
                                     cd performance-tests-cmdstan
-                                    ./runPerformanceTests.py --runs=0 ./example-models/misc/garch
-                                    ls example-models/misc/garch
-                                    cd cmdstan
-                                    make ../example-models/misc/garch/arch1
+                                    ./runPerformanceTests.py --runs=0 ./example-models/misc/
                                 """
                             }
                         }
 
-                        // xunit([GoogleTest(
-                        //     deleteOutputFiles: false,
-                        //     failIfNotNew: true,
-                        //     pattern: 'performance-tests-cmdstan/performance.xml',
-                        //     skipNoTestFiles: false,
-                        //     stopProcessingIfError: false)
-                        // ])
+                        xunit([GoogleTest(
+                            deleteOutputFiles: false,
+                            failIfNotNew: true,
+                            pattern: 'performance-tests-cmdstan/performance.xml',
+                            skipNoTestFiles: false,
+                            stopProcessingIfError: false)
+                        ])
                     }
                     post { always { runShell("rm -rf ./*") }}
                 }
