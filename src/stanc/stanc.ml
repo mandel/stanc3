@@ -182,6 +182,7 @@ let use_file filename =
     Frontend_utils.get_ast_or_exit filename
       ~print_warnings:(not !canonicalize_program)
   in
+  let () = Params_to_data.gen_programs ast in
   let ast =
     if !canonicalize_program then Canonicalize.repair_syntax ast else ast
   in
